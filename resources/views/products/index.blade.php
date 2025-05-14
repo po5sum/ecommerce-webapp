@@ -31,19 +31,18 @@
         <tbody>
             @foreach ($products as $product)
                 <tr class="border-t">
-                    <td class="p-2">{{ $product->name }}</td>
-                    <td class="p-2">{{ $product->category }}</td>
-                    <td class="p-2">${{ $product->price }}</td>
-                    <td class="p-2">{{ $product->stock_quantity }}</td>
-                    <td class="p-2">
-                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="text-green-600 hover:underline">Add to Cart</button>
-                    </form>
+                    <td class="p-2 text-center">{{ $product->name }}</td>
+                    <td class="p-2 text-center">{{ $product->category }}</td>
+                    <td class="p-2 text-center">${{ $product->price }}</td>
+                    <td class="p-2 text-center">{{ $product->stock_quantity }}</td>
+                    <td class="p-2 text-center">
+                        <form action="{{ route('cart.add', $product->id) }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="text-green-600 hover:underline">Add to Cart</button>
+                        </form>
                         @auth
                             @if (Auth::user()->role === 'admin')
-                                <a href="{{ route('products.edit', $product) }}" class="text-blue-500">Edit</a>
-
+                                <a href="{{ route('products.edit', $product) }}" class="text-blue-500 ml-2">Edit</a>
                                 <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')

@@ -44,7 +44,14 @@
         </tbody>
     </table>
 
-    <p class="text-right font-bold text-lg">Total: ${{ $total }}</p>
+    <div class="flex justify-end items-center mt-4">
+        <div class="text-right">
+            <p class="text-lg font-bold mb-2">Total: ${{ $total }}</p>
+            <a href="{{ route('checkout.index') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Proceed to Checkout
+            </a>
+        </div>
+    </div>
 @else
     <p>Your cart is empty.</p>
 @endif
