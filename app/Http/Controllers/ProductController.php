@@ -15,6 +15,10 @@ class ProductController extends Controller
 
     public function create()
     {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized access.');
+        }
+        
         return view('products.create');
     }
 
@@ -39,11 +43,19 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized access.');
+        }
+        
         return view('products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
     {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized access.');
+        }
+        
         $validated = $request->validate([
             'name' => 'required',
             'category' => 'required',
@@ -63,6 +75,10 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized access.');
+        }
+        
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted!');
     }
