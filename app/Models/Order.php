@@ -13,4 +13,9 @@ class Order extends Model
         'payment_type',
         'total',
     ];
+
+    public function items(){
+    return $this->hasMany(\App\Models\OrderItem::class);
+    }
+
 }

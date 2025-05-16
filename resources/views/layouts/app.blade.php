@@ -21,11 +21,11 @@
             <a href="{{ url('/') }}" class="text-xl font-semibold text-blue-600">
                 Products
             </a>
-
+                @auth
                 <a href="{{ route('cart.index') }}" class="relative inline-block text-gray-700 hover:text-blue-600 mr-2">
                     🛒 <span class="ml-1 font-medium">Cart</span>
                 </a>
-
+                @endauth
                 <div class="space-x-4">
                     @guest
                         @if (Route::has('login'))
@@ -51,6 +51,13 @@
                             </button>
                         </form>
                     @endguest
+                    @auth
+                        @if(Auth::user()->role === 'admin')
+                            <a href="{{ route('admin.orders.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">
+                                Manage Orders
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </nav>
