@@ -18,7 +18,7 @@
         <!-- Navbar -->
         <nav class="bg-white shadow">
             <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="{{ url('/') }}" class="text-xl font-semibold text-blue-600">
+            <a href="{{ url('/') }}" class="text-xl font-semibold text-gray-600">
                 Products
             </a>
                 @auth
@@ -53,8 +53,8 @@
                     @endguest
                     @auth
                         @if(Auth::user()->role === 'admin')
-                            <a href="{{ route('admin.orders.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">
-                                Manage Orders
+                            <a href="{{ route('admin.orders.index') }}" class="text-blue-700 hover:text-blue-600 font-medium">
+                                View Orders
                             </a>
                         @endif
                     @endauth
